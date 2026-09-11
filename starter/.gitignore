@@ -1,0 +1,7 @@
+.streamlit/secrets.toml
+*.json
+!*.example.json
+.venv/
+__pycache__/
+*.duckdb.wal
+

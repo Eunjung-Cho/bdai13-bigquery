@@ -1,0 +1,120 @@
+site_name: BDAI 13기 · BigQuery 프로젝트
+site_description: 카드 거래 데이터로 배우는 지표 정의, SQL 검증, 데이터 마트와 대시보드
+site_author: 조은정
+site_url: https://eunjung-cho.github.io/bdai13-bigquery/
+repo_url: https://github.com/Eunjung-Cho/bdai13-bigquery
+repo_name: Eunjung-Cho/bdai13-bigquery
+edit_uri: edit/main/docs/
+use_directory_urls: false
+exclude_docs: |
+  !/templates/
+  !/templates/**
+theme:
+  name: material
+  language: ko
+  font: false
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로 전환
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로 전환
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+      permalink_title: 이 위치로 링크
+      toc_depth: 3
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+plugins:
+  - search:
+      separator: '[\s\-\.\_,:;!?()\[\]]+'
+extra_css:
+  - assets/stylesheets/extra.css
+copyright: Copyright &copy; 2026 조은정
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+  links:
+    not_found: warn
+    anchors: warn
+    unrecognized_links: warn
+nav:
+  - 수업 안내: index.md
+  - 시작하기:
+      - 개강 전 환경 준비: setup.md
+      - SQL 기초 리프레셔: refresher.md
+      - 데이터와 스키마: data-guide.md
+  - 1주차 · 첫 탐색:
+      - 강의: week1/lecture.md
+      - 실습: week1/lab.md
+      - 과제: week1/assignment.md
+  - 2주차 · 지표와 집계:
+      - 강의: week2/lecture.md
+      - 실습: week2/lab.md
+      - 과제: week2/assignment.md
+  - 3주차 · 조인과 검증:
+      - 강의: week3/lecture.md
+      - 실습: week3/lab.md
+      - 과제: week3/assignment.md
+  - 4주차 · 분해 분석:
+      - 강의: week4/lecture.md
+      - 실습: week4/lab.md
+      - 과제: week4/assignment.md
+  - 5주차 · 뷰와 데이터 마트:
+      - 강의: week5/lecture.md
+      - 실습: week5/lab.md
+      - 과제: week5/assignment.md
+  - 6주차 · 대시보드와 발표:
+      - 강의: week6/lecture.md
+      - 실습: week6/lab.md
+      - 최종 제출: week6/assignment.md
+  - 최종 프로젝트: project.md
+  - 작성 양식:
+      - 지표 정의서: templates/metric-spec.md
+      - 분석 보고서: templates/analysis-report.md
+      - AI 사용과 검증 기록: templates/ai-log.md
+      - 비용 비교표: templates/cost-log.md
+  - 참고 자료:
+      - Streamlit과 데이터 연결: reference/dashboard-connection.md
+      - SQL 패턴과 오류 해결: reference/sql-patterns.md
+      - AI SQL 검증 체크리스트: reference/ai-verification.md
+      - 6주 핵심 정리: reference/summary.md
+      - 출처와 읽을거리: reference/sources.md
+      - 실습 파일 다운로드: downloads.md

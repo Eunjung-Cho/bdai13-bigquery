@@ -1,0 +1,13 @@
+.venv/
+site/
+__pycache__/
+.cache/
+.build/
+instructor-notes/
+slides/
+*.docx
+*.pptx
+.env
+.env.*
+!.env.example
+

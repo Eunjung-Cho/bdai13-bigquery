@@ -1,0 +1,3 @@
+-r requirements.txt
+-r starter/requirements.txt
+sqlglot==30.18.0

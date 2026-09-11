@@ -1,0 +1,15 @@
+:root { --md-text-font: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; --md-code-font: 'Cascadia Code', Consolas, monospace; }
+.md-typeset { font-size: .84rem; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
+.md-typeset h1 { color: var(--md-default-fg-color); font-weight: 760; letter-spacing: -.035em; margin-bottom: 1rem; }
+.md-typeset h2 { font-weight: 700; margin-top: 2.3em; }
+.md-typeset h3 { font-weight: 650; }
+.md-typeset table:not([class]) { font-size: .76rem; }
+.md-typeset table:not([class]) th { background: var(--md-code-bg-color); }
+.md-typeset pre { line-height: 1.55; }
+.md-typeset code { font-size: .86em; }
+.md-typeset .admonition, .md-typeset details { font-size: .8rem; }
+.md-grid { max-width: 76rem; }
+.md-nav { font-size: .72rem; }
+.md-typeset .course-intro { border-left: 4px solid var(--md-primary-fg-color); padding-left: 1.15rem; margin: 1.5rem 0; }
+@media print { .md-header,.md-sidebar,.md-footer,.md-content__button { display: none; } .md-typeset { font-size: 10pt; } details { display: block; } }
+
