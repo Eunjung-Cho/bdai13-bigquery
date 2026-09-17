@@ -1,9 +1,6 @@
 site_name: BDAI 13기 / BigQuery 프로젝트
 site_description: 카드 거래 데이터로 배우는 지표 정의, SQL 검증, 데이터 마트와 대시보드
 site_url: https://eunjung-cho.github.io/bdai13-bigquery/
-repo_url: https://github.com/Eunjung-Cho/bdai13-bigquery
-repo_name: Eunjung-Cho/bdai13-bigquery
-edit_uri: edit/main/docs/
 use_directory_urls: false
 exclude_docs: |
   !/templates/
@@ -21,7 +18,6 @@ theme:
     - search.highlight
     - search.suggest
     - content.code.copy
-    - content.action.edit
   palette:
     - media: '(prefers-color-scheme: light)'
       scheme: default
