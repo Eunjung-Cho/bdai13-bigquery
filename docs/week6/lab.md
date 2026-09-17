@@ -19,7 +19,7 @@
 | location | 마트의 실제 리전 |
 | maximum_bytes_billed | 수업에서 정한 1회 쿼리 상한 |
 
-서비스 계정을 만들 수 없지만 Colab의 사용자 로그인으로 마트 조회는 가능하다면 [노트북](../downloads/bigquery-duckdb.ipynb)으로 `mart.duckdb`를 만들고 앱의 backend를 duckdb로 설정합니다. 두 경로를 모두 수행하지 않습니다. DuckDB 파일에는 만들 당시의 결과가 담깁니다. 최신 결과를 반영하려면 파일을 다시 만들어 교체합니다.
+서비스 계정을 만들 수 없지만 Colab의 사용자 로그인으로 마트 조회는 가능하다면 [Colab에서 노트북 열기](https://colab.research.google.com/github/Eunjung-Cho/bdai13-bigquery/blob/main/docs/downloads/bigquery-duckdb.ipynb)로 `mart.duckdb`를 만들고 앱의 backend를 duckdb로 설정합니다. 두 경로를 모두 수행하지 않습니다. DuckDB 파일에는 만들 당시의 결과가 담깁니다. 최신 결과를 반영하려면 파일을 다시 만들어 교체합니다.
 
 ## B 화면을 한 부분씩 바꾸기 / 25분
 

@@ -3,7 +3,7 @@
 기본 방법은 **BigQuery에 만든 작은 합계 표를 Python으로 읽어 Streamlit 화면에 보여 주기**입니다. 이 합계 표가 5주차의 데이터 마트입니다. CSV로 옮기는 단계는 없습니다. 앱에서 직접 연결할 계정을 만들기 어렵다면, Colab에서 본인 계정으로 로그인해 결과를 DuckDB 파일에 저장하고 앱이 그 파일을 읽게 합니다.
 
 [Streamlit 기본 앱 다운로드](../downloads/streamlit-starter.zip){ .md-button .md-button--primary }
-[Colab용 DuckDB 노트북](../downloads/bigquery-duckdb.ipynb){ .md-button }
+[Colab에서 DuckDB 노트북 열기](https://colab.research.google.com/github/Eunjung-Cho/bdai13-bigquery/blob/main/docs/downloads/bigquery-duckdb.ipynb){ .md-button }
 
 ## 왜 직접 연결을 할 수 있나요?
 
@@ -21,7 +21,7 @@ flowchart LR
 
 ## 1. 먼저 Colab에서 연결 확인하기
 
-초급 수강생은 Python 설치 없이 Colab에서 아래 순서로 연결을 확인할 수 있습니다. [Google Colab](https://colab.research.google.com/)에서 새 노트북을 열고 각 셀을 차례대로 실행합니다. 이 단계는 직접 연결의 로그인, 쿼리 확인이며 DuckDB가 필수는 아닙니다.
+초급 수강생은 Python 설치 없이 Colab에서 아래 순서로 연결을 확인할 수 있습니다. 위의 **Colab에서 DuckDB 노트북 열기** 버튼을 누르고 각 셀을 차례대로 실행합니다. 이 단계는 직접 연결의 로그인, 쿼리 확인이며 DuckDB가 필수는 아닙니다.
 
 ```python
 from google.colab import auth
