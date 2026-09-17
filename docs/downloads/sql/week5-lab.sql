@@ -39,7 +39,7 @@ SELECT
     WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
     ELSE NULL
   END AS fraud_flag
-FROM `finda-13-2026.tabformer.transactions`;
+FROM `bdai13-bigquery.tabformer.transactions`;
 
 
 -- Example 2
@@ -138,7 +138,7 @@ WITH clean AS (
     SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC)
       AS amount_usd,
     (errors IS NULL OR TRIM(errors) = '') AS approved_for_analysis
-  FROM `finda-13-2026.tabformer.transactions`
+  FROM `bdai13-bigquery.tabformer.transactions`
 )
 SELECT
   DATE_TRUNC(tx_date, MONTH) AS tx_month,

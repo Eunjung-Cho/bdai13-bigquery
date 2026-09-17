@@ -10,7 +10,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -21,7 +21,7 @@ WITH clean AS (
             ELSE CONCAT(CAST(DIV(u.current_age, 10) * 10 AS STRING), '대')
         END AS age_band
     FROM base AS t
-    LEFT JOIN `finda-13-2026.tabformer.users` AS u ON t.user_id = u.user_id
+    LEFT JOIN `bdai13-bigquery.tabformer.users` AS u ON t.user_id = u.user_id
 ), grouped AS (
     SELECT age_band, mcc, SUM(amount_usd) AS net_amount_usd,
         COUNT(*) AS txn_count
@@ -47,7 +47,7 @@ WITH clean AS (
         CASE WHEN use_chip = 'Online Transaction' THEN '온라인'
             WHEN use_chip IN ('Swipe Transaction', 'Chip Transaction') THEN '오프라인'
             ELSE '미분류' END AS channel
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -98,7 +98,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), last_seen AS (
     SELECT user_id, MAX(tx_date) AS last_tx_date
     FROM clean
@@ -112,7 +112,7 @@ WITH clean AS (
             WHEN DATE_DIFF(DATE '2019-01-01', l.last_tx_date, DAY) >= 90
                 THEN '90일 이상 미거래 후보'
             ELSE '90일 미만 거래 관측' END AS activity_status
-    FROM `finda-13-2026.tabformer.users` AS u
+    FROM `bdai13-bigquery.tabformer.users` AS u
     LEFT JOIN last_seen AS l ON u.user_id = l.user_id
 )
 SELECT activity_status, COUNT(*) AS user_count,

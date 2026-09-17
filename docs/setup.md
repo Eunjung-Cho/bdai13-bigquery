@@ -15,7 +15,7 @@ BigQuery의 데이터는 큰 보관함 안에 폴더와 표가 들어 있는 모
 
 ```text
 프로젝트.데이터셋.테이블
-finda-13-2026.tabformer.transactions   ← 강사가 읽기를 허용한 원본
+bdai13-bigquery.tabformer.transactions   ← 강사가 읽기를 허용한 원본
 YOUR_PROJECT.bdai13                     ← 개인 뷰와 마트를 저장할 공간
 ```
 
@@ -49,17 +49,17 @@ SELECT
 
 | 필요한 정보 | 자료 안의 표시 | 확인 방법 |
 | --- | --- | --- |
-| 원본 프로젝트 ID | `finda-13-2026` | 강사 공지 |
+| 원본 프로젝트 ID | `bdai13-bigquery` | 강사 공지 |
 | 원본 데이터셋 ID | `tabformer` | Explorer에서 확인 |
-| 데이터 위치 | 강사 공지값 | 데이터셋 상세 정보 |
+| 데이터 위치 | `asia-northeast3` (서울) | 데이터셋 상세 정보 |
 | 학생에게 부여된 읽기 권한 | 데이터 조회 가능 여부 | 테이블 스키마, 미리보기 |
 
 왼쪽 탐색기(Explorer)에 프로젝트를 추가하고 `transactions`, `users`, `cards`를 찾습니다. **스키마(Schema)**에서는 열 이름과 값의 종류를 보고, **미리보기**에서는 실제 값 몇 줄을 볼 수 있습니다. 표의 가로줄은 ‘행’, 세로줄은 ‘열(column)’입니다. 원본을 내 컴퓨터에 복사할 필요는 없습니다. 열 이름이 [데이터 가이드](data-guide.md)의 설명과 같은지 확인하세요.
 
 ```sql
--- finda-13-2026를 강사가 공지한 프로젝트 ID로 바꿉니다.
+-- bdai13-bigquery를 강사가 공지한 프로젝트 ID로 바꿉니다.
 SELECT table_name, column_name, data_type, is_nullable
-FROM `finda-13-2026.tabformer.INFORMATION_SCHEMA.COLUMNS`
+FROM `bdai13-bigquery.tabformer.INFORMATION_SCHEMA.COLUMNS`
 WHERE table_name IN ('transactions', 'users', 'cards')
 ORDER BY table_name, ordinal_position;
 ```
@@ -83,7 +83,7 @@ ORDER BY table_name, ordinal_position;
 
 ## 5. 5주차 저장 공간 준비
 
-5주차 전에 개인 프로젝트에 `bdai13` 데이터셋을 만듭니다. 데이터 위치는 원본 데이터셋과 같게 설정합니다. 서로 다른 지역(리전)에 저장된 데이터를 한 쿼리로 조인하거나 잘못된 위치에 결과물을 만들면 실패할 수 있습니다.
+5주차 전에 개인 프로젝트에 `bdai13` 데이터셋을 만듭니다. 데이터 위치는 원본 데이터셋과 같은 `asia-northeast3`(서울)로 설정합니다. 서로 다른 지역(리전)에 저장된 데이터를 한 쿼리로 조인하거나 잘못된 위치에 결과물을 만들면 실패할 수 있습니다.
 
 CREATE는 새 뷰나 테이블을 만드는 명령입니다. 본인 데이터셋에 새 자료를 만들 권한이 있어야 합니다. 예제의 `YOUR_PROJECT`를 자신의 프로젝트 ID로 바꾼 뒤 실행하세요. 샌드박스 자료는 기간이 지나면 만료되므로, 나중에 다시 만들 수 있도록 SQL과 집계 결과를 따로 보관합니다.
 

@@ -11,13 +11,13 @@ SELECT
     REPLACE(REPLACE(amount, '$', ''), ',', '') AS numeric_text,
     SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC)
         AS amount_usd
-FROM `finda-13-2026.tabformer.transactions`
+FROM `bdai13-bigquery.tabformer.transactions`
 LIMIT 20;
 
 
 -- Example 2
 SELECT user, card_index, COUNT(*) AS rows_per_key
-FROM `finda-13-2026.tabformer.cards`
+FROM `bdai13-bigquery.tabformer.cards`
 GROUP BY user, card_index
 HAVING COUNT(*) > 1;
 
@@ -26,5 +26,5 @@ HAVING COUNT(*) > 1;
 -- 질문: 고객별 카드 보유 수는?
 -- 원천 한 행: 카드 1장. 결과 한 행: 고객 1명.
 SELECT user AS user_id, COUNT(*) AS card_count
-FROM `finda-13-2026.tabformer.cards`
+FROM `bdai13-bigquery.tabformer.cards`
 GROUP BY user;

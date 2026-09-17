@@ -10,13 +10,13 @@ SELECT
   card_id,
   amount,
   use_chip
-FROM `finda-13-2026.tabformer.transactions`
+FROM `bdai13-bigquery.tabformer.transactions`
 LIMIT 10;
 
 
 -- Example 2
 SELECT user_id
-FROM `finda-13-2026.tabformer.transactions`
+FROM `bdai13-bigquery.tabformer.transactions`
 LIMIT 10;
 
 
@@ -29,7 +29,7 @@ SELECT
   COUNTIF(TRIM(amount) = '') AS blank_amount_rows,
   COUNTIF(mcc IS NULL) AS missing_mcc_rows,
   COUNTIF(year = 2018) AS year_2018_raw_rows
-FROM `finda-13-2026.tabformer.transactions`;
+FROM `bdai13-bigquery.tabformer.transactions`;
 
 
 -- Example 4
@@ -41,7 +41,7 @@ WITH profiled AS (
     SAFE.PARSE_DATE(
       '%Y-%m-%d', FORMAT('%04d-%02d-%02d', year, month, day)
     ) AS tx_date
-  FROM `finda-13-2026.tabformer.transactions`
+  FROM `bdai13-bigquery.tabformer.transactions`
 )
 SELECT
   COUNT(*) AS row_count,
@@ -60,7 +60,7 @@ SELECT
   card_index,
   COUNT(*) AS card_rows,
   COUNT(DISTINCT `user`) AS user_count
-FROM `finda-13-2026.tabformer.cards`
+FROM `bdai13-bigquery.tabformer.cards`
 GROUP BY card_index
 ORDER BY card_rows DESC
 LIMIT 10;
@@ -72,7 +72,7 @@ WITH dated AS (
     SAFE.PARSE_DATE(
       '%Y-%m-%d', FORMAT('%04d-%02d-%02d', year, month, day)
     ) AS tx_date
-  FROM `finda-13-2026.tabformer.transactions`
+  FROM `bdai13-bigquery.tabformer.transactions`
 )
 SELECT
   COUNTIF(tx_date >= DATE '2018-01-01'
@@ -83,5 +83,5 @@ FROM dated;
 
 -- Example 7
 SELECT COUNT(amount) AS transaction_count
-FROM `finda-13-2026.tabformer.transactions`
+FROM `bdai13-bigquery.tabformer.transactions`
 WHERE year = 2018;

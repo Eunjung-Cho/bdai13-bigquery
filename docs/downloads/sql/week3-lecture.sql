@@ -6,10 +6,10 @@
 
 -- Example 1
 -- 고객 속성 연결
-LEFT JOIN `finda-13-2026.tabformer.users` AS u
+LEFT JOIN `bdai13-bigquery.tabformer.users` AS u
     ON t.user_id = u.user_id
 -- 카드 속성 연결: 두 조건이 한 세트입니다.
-LEFT JOIN `finda-13-2026.tabformer.cards` AS c
+LEFT JOIN `bdai13-bigquery.tabformer.cards` AS c
     ON t.user_id = c.user
     AND t.card_id = c.card_index
 

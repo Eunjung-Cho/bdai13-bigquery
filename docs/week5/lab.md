@@ -8,7 +8,7 @@
 
 80분 동안 자주 쓰는 SQL을 뷰로 저장하고, 합계 표인 마트를 만듭니다. 결과가 맞는지 확인한 뒤 AI와 함께 코드를 읽기 쉽게 정리합니다. 참고 SQL을 펼쳐 읽으며 ‘한 줄에 무엇을 담는지’, ‘WHERE에서 어떤 거래를 고르는지’를 말해 보세요.
 
-준비할 항목은 자신의 쓰기 프로젝트, 강사 공유 원본 주소, 원본과 같은 데이터 위치입니다. 원본 프로젝트는 `finda-13-2026`으로 변경 예정이며, 프로젝트 생성과 데이터 업로드, 읽기 권한 설정이 끝났는지는 강사 공지로 확인합니다. 강사 공지 후 접속을 확인하고, `YOUR_PROJECT`는 자신의 실제 프로젝트 ID로 바꿉니다. 실제 스키마는 [데이터 안내](../data-guide.md)의 사전 프로파일 결과와 대조합니다.
+준비할 항목은 자신의 쓰기 프로젝트, 강사 공유 원본 주소, 원본과 같은 데이터 위치입니다. 원본 프로젝트는 `bdai13-bigquery`이고 데이터 위치는 `asia-northeast3`입니다. 접속을 확인하고, `YOUR_PROJECT`는 자신의 실제 프로젝트 ID로 바꿉니다. 실제 스키마는 [데이터 안내](../data-guide.md)의 사전 프로파일 결과와 대조합니다.
 
 완료하면 다음 네 가지가 남아 있어야 합니다.
 
@@ -63,7 +63,7 @@ SELECT
     WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
     ELSE NULL
   END AS fraud_flag
-FROM `finda-13-2026.tabformer.transactions`;
+FROM `bdai13-bigquery.tabformer.transactions`;
 ```
 
 생성 대상은 자신의 데이터셋입니다. 이 뷰를 만들 수 있어도 다른 사람이 원본에 접근할 권한까지 자동으로 생기는 것은 아닙니다. 원본 읽기 권한이 없는 사람에게 뷰 결과를 보여 주려면 authorized view라는 별도 설정이 필요합니다. 뷰를 만들었다고 이 설정까지 자동으로 되는 것은 아닙니다.
@@ -209,7 +209,7 @@ WITH clean AS (
     SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC)
       AS amount_usd,
     (errors IS NULL OR TRIM(errors) = '') AS approved_for_analysis
-  FROM `finda-13-2026.tabformer.transactions`
+  FROM `bdai13-bigquery.tabformer.transactions`
 )
 SELECT
   DATE_TRUNC(tx_date, MONTH) AS tx_month,

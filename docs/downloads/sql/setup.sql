@@ -11,8 +11,8 @@ SELECT
 
 
 -- Example 2
--- finda-13-2026를 강사가 공지한 프로젝트 ID로 바꿉니다.
+-- bdai13-bigquery를 강사가 공지한 프로젝트 ID로 바꿉니다.
 SELECT table_name, column_name, data_type, is_nullable
-FROM `finda-13-2026.tabformer.INFORMATION_SCHEMA.COLUMNS`
+FROM `bdai13-bigquery.tabformer.INFORMATION_SCHEMA.COLUMNS`
 WHERE table_name IN ('transactions', 'users', 'cards')
 ORDER BY table_name, ordinal_position;

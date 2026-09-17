@@ -15,7 +15,7 @@ WITH clean AS (
         CASE WHEN LOWER(TRIM(is_fraud)) = 'yes' THEN TRUE
              WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
              ELSE NULL END AS fraud_flag
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -42,7 +42,7 @@ WITH clean AS (
         CASE WHEN LOWER(TRIM(is_fraud)) = 'yes' THEN TRUE
              WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
              ELSE NULL END AS fraud_flag
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -65,7 +65,7 @@ WITH clean AS (
         CASE WHEN LOWER(TRIM(is_fraud)) = 'yes' THEN TRUE
              WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
              ELSE NULL END AS fraud_flag
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -92,7 +92,7 @@ WITH clean AS (
         CASE WHEN LOWER(TRIM(is_fraud)) = 'yes' THEN TRUE
              WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
              ELSE NULL END AS fraud_flag
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'

@@ -55,7 +55,7 @@ flowchart LR
 BigQuery GoogleSQL로 다음 비즈니스 질문에 답하는 쿼리를 작성해 줘.
 질문: [질문]
 스키마: [실제 열과 타입]
-원본: finda-13-2026.tabformer.[테이블]
+원본: bdai13-bigquery.tabformer.[테이블]
 결과 한 행: [한 행의 기준]
 기간/환불/오류/NULL 처리: [정의]
 

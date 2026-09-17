@@ -27,7 +27,7 @@ WITH clean AS (
             ELSE NULL
         END AS fraud_flag,
         errors
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 )
 SELECT *
 FROM clean

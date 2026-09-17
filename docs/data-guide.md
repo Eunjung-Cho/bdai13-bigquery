@@ -1,6 +1,6 @@
 # 데이터와 스키마
 
-이 수업은 기존 FinDA 과정과 같은 카드 거래 데이터를 사용합니다. 원본 프로젝트는 **`finda-13-2026`으로 변경 예정**이며 예제는 데이터셋 이름 `tabformer`를 유지합니다. 실제 공유 완료와 접근 권한은 개강 공지로 확인하세요.
+이 수업은 기존 FinDA 과정과 같은 카드 거래 데이터를 사용합니다. 원본 주소는 **`bdai13-bigquery.tabformer`**이고 데이터 위치는 **`asia-northeast3`(서울)**입니다. 읽기 권한은 강사가 수강생 그룹에 부여합니다. 표가 보이지 않으면 [환경 준비](setup.md)의 “자주 막히는 지점”을 먼저 확인하고 강사에게 알리세요.
 
 ## 데이터가 설명할 수 있는 것
 
@@ -21,7 +21,7 @@ erDiagram
         INT64 user_id PK
         INT64 current_age
         STRING gender
-        STRING yearly_income
+        INT64 yearly_income_person
     }
     cards {
         INT64 user PK
@@ -63,7 +63,7 @@ erDiagram
 
 ### 고객과 카드 테이블
 
-`users`는 `user_id`, `current_age`, `gender`, `yearly_income`을 주로 씁니다. 소득은 금액 문자열일 수 있습니다. **`current_age`는 고객 정보를 저장할 때의 나이입니다. 과거에 결제했을 때의 나이와는 다를 수 있습니다.** 나이 구간 분석에는 이 한계를 표시합니다.
+`users`는 `user_id`, `current_age`, `gender`, `yearly_income_person`을 주로 씁니다. 소득 열 이름은 `yearly_income`이 아니라 **`yearly_income_person`**이고, 값은 이미 숫자(INT64)라서 `$` 제거 같은 정제가 필요 없습니다. 거래 금액 `amount`와 달리 그대로 계산에 쓸 수 있습니다. **`current_age`는 고객 정보를 저장할 때의 나이입니다. 과거에 결제했을 때의 나이와는 다를 수 있습니다.** 나이 구간 분석에는 이 한계를 표시합니다.
 
 `cards`는 `user`, `card_index`, `card_brand`, `card_type`, `credit_limit`을 사용합니다. 고객 A의 카드 0과 고객 B의 카드 0은 다른 카드입니다. `card_index`만으로 조인하면 서로 다른 고객의 카드가 연결될 수 있습니다.
 
@@ -94,7 +94,7 @@ WITH clean AS (
             ELSE NULL
         END AS fraud_flag,
         errors
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 )
 SELECT *
 FROM clean

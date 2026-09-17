@@ -10,7 +10,7 @@
 4. `.streamlit/secrets.toml.example`을 참고해 Streamlit Community Cloud의 Secrets에 값을 넣습니다. 실제 인증키 파일은 저장소에 올리지 않습니다. 키 생성이 조직 정책으로 차단되어 있으면 Colab 사용자 로그인 예비 경로를 사용합니다.
 5. Community Cloud에서 저장소와 `app.py`, Python 3.12 이상을 선택해 배포합니다.
 
-`query_project`는 쿼리 실행·무료 한도 차감 프로젝트입니다. `table`은 조회할 집계 마트입니다. 새 원천 프로젝트 `finda-13-2026.tabformer`는 SQL 정제에 사용하며 앱은 그 원본을 직접 모두 읽지 않습니다. `location`은 마트와 같은 위치로 지정합니다.
+`query_project`는 쿼리 실행·무료 한도 차감 프로젝트입니다. `table`은 조회할 집계 마트입니다. 원천 프로젝트 `bdai13-bigquery.tabformer`는 SQL 정제에 사용하며 앱은 그 원본을 직접 모두 읽지 않습니다. `location`은 마트와 같은 위치로 지정합니다.
 
 BigQuery Python API는 결제 등록 없는 샌드박스 사용을 지원합니다. 무료 한도·테이블 만료·권한은 실제 프로젝트에서 확인해야 합니다. 앱은 2018년 마트를 최대 10분 캐시하고 1회 쿼리 상한을 설정합니다. 상한은 전체 사용자/월간 사용량을 제한하는 장치는 아닙니다.
 

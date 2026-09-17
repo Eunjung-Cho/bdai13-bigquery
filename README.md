@@ -20,7 +20,7 @@ GitHub Actions는 main 변경 시 `site/`를 만들어 GitHub Pages에 배포합
 
 ## 수업 설정
 
-- 원본 데이터: `finda-13-2026.tabformer` (동일 데이터, 새 프로젝트 준비 예정).
+- 원본 데이터: `bdai13-bigquery.tabformer` (asia-northeast3, 2026-09-17 공유 완료).
 - 학생 저장 위치: `YOUR_PROJECT.bdai13`를 본인 프로젝트로 치환.
 - 6주차: Streamlit + BigQuery Python 직접 연결. 예비 경로 Colab + DuckDB 스냅샷.
 - 기본 언어: 한국어. 완성 SQL 실행→한 조건 수정→결과 검증.

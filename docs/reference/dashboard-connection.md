@@ -11,7 +11,7 @@ Google의 BigQuery 클라이언트 라이브러리 빠른 시작은 **결제 등
 
 ```mermaid
 flowchart LR
-    R["강사 원본<br/>finda-13-2026.tabformer"] --> S[학생 SQL 분석]
+    R["강사 원본<br/>bdai13-bigquery.tabformer"] --> S[학생 SQL 분석]
     S --> M["학생 집계 마트<br/>월 × MCC × 채널"]
     M --> P[Python BigQuery 클라이언트]
     P --> A[Streamlit 앱]
@@ -50,7 +50,7 @@ WHERE tx_month >= DATE '2018-01-01'
   AND tx_month < DATE '2019-01-01'
 '''
 config = bigquery.QueryJobConfig(maximum_bytes_billed=100_000_000)
-job = client.query(query, job_config=config, location='US')  # 실제 마트 리전으로 변경
+job = client.query(query, job_config=config, location='asia-northeast3')  # 마트의 실제 리전
 df = job.result().to_dataframe(create_bqstorage_client=False)
 display(df.head())
 print('집계 행 수:', len(df), '처리 바이트:', job.total_bytes_processed)

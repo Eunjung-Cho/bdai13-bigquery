@@ -4,7 +4,7 @@
 
 **총 70분.** 필수 활동은 완성된 SQL을 실행하고 한 부분씩 바꾸는 방식입니다. 먼저 결과의 뜻을 말하고, 문법을 모르는 부분은 주석과 해설로 확인합니다. 도전 활동은 필수 활동을 마친 뒤 진행합니다.
 
-실습에서는 `finda-13-2026.tabformer`에 있는 표를 읽습니다. 먼저 Schema 탭에서 열 이름과 값의 종류를 확인하세요. 아래 코드와 다르다면 [데이터 사전](../data-guide.md)을 함께 보며 실제 열 이름을 찾습니다. 실행 프로젝트는 본인 프로젝트이며 원본과 같은 데이터 위치를 사용합니다.
+실습에서는 `bdai13-bigquery.tabformer`에 있는 표를 읽습니다. 먼저 Schema 탭에서 열 이름과 값의 종류를 확인하세요. 아래 코드와 다르다면 [데이터 사전](../data-guide.md)을 함께 보며 실제 열 이름을 찾습니다. 실행 프로젝트는 본인 프로젝트이며 원본과 같은 데이터 위치를 사용합니다.
 
 ## A. 팀원이 분석에 접속할 수 있는가? / 20분
 
@@ -21,7 +21,7 @@ SELECT
   card_id,
   amount,
   use_chip
-FROM `finda-13-2026.tabformer.transactions`
+FROM `bdai13-bigquery.tabformer.transactions`
 LIMIT 10;
 ```
 
@@ -51,7 +51,7 @@ LIMIT 10;
 
 ```sql
 SELECT user_id
-FROM `finda-13-2026.tabformer.transactions`
+FROM `bdai13-bigquery.tabformer.transactions`
 LIMIT 10;
 ```
 
@@ -68,7 +68,7 @@ SELECT
   COUNTIF(TRIM(amount) = '') AS blank_amount_rows,
   COUNTIF(mcc IS NULL) AS missing_mcc_rows,
   COUNTIF(year = 2018) AS year_2018_raw_rows
-FROM `finda-13-2026.tabformer.transactions`;
+FROM `bdai13-bigquery.tabformer.transactions`;
 ```
 
 `COUNT(DISTINCT user_id)`는 거래 테이블에 등장한 서로 다른 사용자 수입니다. `users` 전체 사용자 수와 같다고 가정하지 않습니다. `year = 2018`은 원본 연도 열을 기준으로 센 행이며, 존재하지 않는 날짜, 잘못된 금액도 포함할 수 있습니다.
@@ -86,7 +86,7 @@ WITH profiled AS (
     SAFE.PARSE_DATE(
       '%Y-%m-%d', FORMAT('%04d-%02d-%02d', year, month, day)
     ) AS tx_date
-  FROM `finda-13-2026.tabformer.transactions`
+  FROM `bdai13-bigquery.tabformer.transactions`
 )
 SELECT
   COUNT(*) AS row_count,
@@ -119,7 +119,7 @@ SELECT
   card_index,
   COUNT(*) AS card_rows,
   COUNT(DISTINCT `user`) AS user_count
-FROM `finda-13-2026.tabformer.cards`
+FROM `bdai13-bigquery.tabformer.cards`
 GROUP BY card_index
 ORDER BY card_rows DESC
 LIMIT 10;
@@ -137,7 +137,7 @@ LIMIT 10;
 
 ```text
 BigQuery GoogleSQL을 사용한다.
-원본: finda-13-2026.tabformer.transactions.
+원본: bdai13-bigquery.tabformer.transactions.
 year, month, day는 INT64이며 transaction_date라는 열은 없다.
 질문: 유효한 날짜가 2018-01-01 이상 2019-01-01 미만인 원본 거래 행 수는?
 승인, 금액, 사기 여부로는 아직 필터링하지 않는다.
@@ -166,7 +166,7 @@ WITH dated AS (
     SAFE.PARSE_DATE(
       '%Y-%m-%d', FORMAT('%04d-%02d-%02d', year, month, day)
     ) AS tx_date
-  FROM `finda-13-2026.tabformer.transactions`
+  FROM `bdai13-bigquery.tabformer.transactions`
 )
 SELECT
   COUNTIF(tx_date >= DATE '2018-01-01'
@@ -185,7 +185,7 @@ B2의 유효한 2018년 행 수 및 전체 날짜 불가 행 수와 각각 일�
 
 ```sql
 SELECT COUNT(amount) AS transaction_count
-FROM `finda-13-2026.tabformer.transactions`
+FROM `bdai13-bigquery.tabformer.transactions`
 WHERE year = 2018;
 ```
 

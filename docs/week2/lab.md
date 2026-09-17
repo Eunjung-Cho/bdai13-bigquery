@@ -2,7 +2,7 @@
 
 [강의](lecture.md) / [과제](assignment.md) / [지표 정의서](../templates/metric-spec.md)
 
-실습 70분입니다. 완성 SQL을 먼저 실행하고 조건 한 곳을 바꾸는 방식으로 진행합니다. 아래 코드의 원본 프로젝트는 `finda-13-2026`이며 개설, 공유 완료는 강사 공지로 확인합니다. 모든 결과 수치는 직접 실행해서 기록합니다.
+실습 70분입니다. 완성 SQL을 먼저 실행하고 조건 한 곳을 바꾸는 방식으로 진행합니다. 아래 코드의 원본 프로젝트는 `bdai13-bigquery`입니다. 모든 결과 수치는 직접 실행해서 기록합니다.
 
 ## A. 어느 업종의 순거래액이 큰가 / 25분
 
@@ -25,7 +25,7 @@ WITH clean AS (
         CASE WHEN LOWER(TRIM(is_fraud)) = 'yes' THEN TRUE
              WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
              ELSE NULL END AS fraud_flag
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -58,7 +58,7 @@ WITH clean AS (
         CASE WHEN LOWER(TRIM(is_fraud)) = 'yes' THEN TRUE
              WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
              ELSE NULL END AS fraud_flag
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -91,7 +91,7 @@ WITH clean AS (
         CASE WHEN LOWER(TRIM(is_fraud)) = 'yes' THEN TRUE
              WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
              ELSE NULL END AS fraud_flag
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -130,7 +130,7 @@ WITH clean AS (
         CASE WHEN LOWER(TRIM(is_fraud)) = 'yes' THEN TRUE
              WHEN LOWER(TRIM(is_fraud)) = 'no' THEN FALSE
              ELSE NULL END AS fraud_flag
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'

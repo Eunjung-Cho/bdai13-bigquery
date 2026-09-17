@@ -17,7 +17,7 @@ for page in (root/'docs').rglob('*.md'):
         uncommented=re.sub(r'--[^\n]*', '', statement).strip()
         if uncommented.startswith('LEFT JOIN'):
             # The page explicitly presents only JOIN clauses as a reading example.
-            statement='SELECT * FROM `finda-13-2026.tabformer.transactions` AS t\n'+statement
+            statement='SELECT * FROM `bdai13-bigquery.tabformer.transactions` AS t\n'+statement
             fragments+=1
         try:
             sqlglot.parse(statement,read='bigquery')

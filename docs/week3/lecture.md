@@ -37,7 +37,7 @@ erDiagram
         INT64 user_id PK
         INT64 current_age
         STRING gender
-        STRING yearly_income
+        INT64 yearly_income_person
     }
     cards {
         INT64 user PK
@@ -55,15 +55,15 @@ erDiagram
 
 ```sql
 -- 고객 속성 연결
-LEFT JOIN `finda-13-2026.tabformer.users` AS u
+LEFT JOIN `bdai13-bigquery.tabformer.users` AS u
     ON t.user_id = u.user_id
 -- 카드 속성 연결: 두 조건이 한 세트입니다.
-LEFT JOIN `finda-13-2026.tabformer.cards` AS c
+LEFT JOIN `bdai13-bigquery.tabformer.cards` AS c
     ON t.user_id = c.user
     AND t.card_id = c.card_index
 ```
 
-이 조각은 키를 읽는 예시입니다. 실행 가능한 전체 쿼리는 [실습](lab.md)에 있습니다. 읽기 프로젝트는 `finda-13-2026`으로 준비할 예정이며 실제 테이블과 권한 상태는 [환경 준비](../setup.md)에서 확인합니다.
+이 조각은 키를 읽는 예시입니다. 실행 가능한 전체 쿼리는 [실습](lab.md)에 있습니다. 읽기 프로젝트는 `bdai13-bigquery`으로 준비할 예정이며 실제 테이블과 권한 상태는 [환경 준비](../setup.md)에서 확인합니다.
 
 ## 2. 손으로 확인하는 팬아웃
 

@@ -15,7 +15,7 @@ for page in pages:
     text = page.read_text(encoding='utf-8')
     if len(re.findall(r'^\s*```', text, re.M)) % 2:
         errors.append(f'Unclosed fence: {page.relative_to(ROOT)}')
-    if re.search(r'finda-week7-505502|SOURCE_PROJECT|스크린샷 추가 예정', text):
+    if re.search(r'finda-week7-505502|finda-13-2026|SOURCE_PROJECT|스크린샷 추가 예정', text):
         errors.append(f'Stale source or placeholder: {page.relative_to(ROOT)}')
 for week in range(1,7):
     for name in ['lecture','lab','assignment']:

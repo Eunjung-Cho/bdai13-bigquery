@@ -2,7 +2,7 @@
 
 [강의](lecture.md) / [과제](assignment.md) / [데이터 사전](../data-guide.md)
 
-읽기 원본은 `finda-13-2026.tabformer`이며 실제 공유 준비 상태는 [환경 준비](../setup.md)를 확인합니다. 각 SQL은 독립 실행용입니다. 실제 결과와 처리 바이트는 본인이 기록합니다. 키 검증을 먼저 끝내고 분석으로 이동합니다.
+읽기 원본은 `bdai13-bigquery.tabformer`이며 실제 공유 준비 상태는 [환경 준비](../setup.md)를 확인합니다. 각 SQL은 독립 실행용입니다. 실제 결과와 처리 바이트는 본인이 기록합니다. 키 검증을 먼저 끝내고 분석으로 이동합니다.
 
 처음에는 **참고 SQL을 펼쳐 그대로 실행 → 결과 열 확인 → 조건 한 곳 수정 → 결과 비교** 순서로 진행합니다. 긴 쿼리를 외울 필요는 없습니다. `WITH` 다음 이름들은 “정제한 표”, “기간을 고른 표”, “속성을 붙인 표”라고 읽으면 됩니다. 도전 문제는 기본 실행과 검증을 마친 뒤 선택합니다.
 
@@ -20,12 +20,12 @@
 ```sql
 WITH user_duplicates AS (
     SELECT user_id
-    FROM `finda-13-2026.tabformer.users`
+    FROM `bdai13-bigquery.tabformer.users`
     GROUP BY user_id
     HAVING COUNT(*) > 1
 ), card_duplicates AS (
     SELECT user, card_index
-    FROM `finda-13-2026.tabformer.cards`
+    FROM `bdai13-bigquery.tabformer.cards`
     GROUP BY user, card_index
     HAVING COUNT(*) > 1
 )
@@ -33,9 +33,9 @@ SELECT
     (SELECT COUNT(*) FROM user_duplicates) AS duplicate_user_keys,
     (SELECT COUNT(*) FROM card_duplicates) AS duplicate_card_keys,
     (SELECT COUNTIF(user_id IS NULL)
-        FROM `finda-13-2026.tabformer.users`) AS null_user_keys,
+        FROM `bdai13-bigquery.tabformer.users`) AS null_user_keys,
     (SELECT COUNTIF(user IS NULL OR card_index IS NULL)
-        FROM `finda-13-2026.tabformer.cards`) AS null_card_keys;
+        FROM `bdai13-bigquery.tabformer.cards`) AS null_card_keys;
 ```
 
 </details>
@@ -49,7 +49,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -58,8 +58,8 @@ WITH clean AS (
 ), joined AS (
     SELECT t.amount_usd, u.user_id AS matched_user, c.user AS matched_card
     FROM base AS t
-    LEFT JOIN `finda-13-2026.tabformer.users` AS u ON t.user_id = u.user_id
-    LEFT JOIN `finda-13-2026.tabformer.cards` AS c
+    LEFT JOIN `bdai13-bigquery.tabformer.users` AS u ON t.user_id = u.user_id
+    LEFT JOIN `bdai13-bigquery.tabformer.cards` AS c
         ON t.user_id = c.user AND t.card_id = c.card_index
 ), before_join AS (
     SELECT COUNT(*) AS rows_before, SUM(amount_usd) AS amount_before FROM base
@@ -96,7 +96,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -108,7 +108,7 @@ WITH clean AS (
         END AS age_band,
         COALESCE(NULLIF(TRIM(u.gender), ''), '성별 미상') AS gender
     FROM base AS t
-    LEFT JOIN `finda-13-2026.tabformer.users` AS u ON t.user_id = u.user_id
+    LEFT JOIN `bdai13-bigquery.tabformer.users` AS u ON t.user_id = u.user_id
 )
 SELECT age_band, gender, SUM(amount_usd) AS net_amount_usd,
     COUNT(*) AS txn_count, COUNT(DISTINCT user_id) AS active_user_count,
@@ -135,7 +135,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), used_cards AS (
     SELECT DISTINCT user_id, card_id
     FROM clean
@@ -144,7 +144,7 @@ WITH clean AS (
 ), card_status AS (
     SELECT c.user, c.card_index, c.card_brand,
         t.user_id IS NULL AS is_unused
-    FROM `finda-13-2026.tabformer.cards` AS c
+    FROM `bdai13-bigquery.tabformer.cards` AS c
     LEFT JOIN used_cards AS t
         ON c.user = t.user_id AND c.card_index = t.card_id
 )
@@ -167,7 +167,7 @@ ORDER BY unused_cards DESC;
 
 **조건:** 소득은 고객 정보를 저장할 때의 연간 소득이고, 단위는 달러(USD)입니다. 30,000달러, 60,000달러, 100,000달러를 기준으로 구간을 나눕니다. 음수 및 변환 실패는 미상으로 분리합니다. 객단가는 고객별 평균의 평균이 아니라 거래 전체의 순거래액/건수입니다.
 
-먼저 참고 SQL을 실행하고 가장 낮은 소득 구간의 경계 한 곳만 바꿔 결과를 비교합니다. 원래 경계로 되돌린 뒤 같은 조건을 AI에게 전달해 SQL을 받습니다. (1) 고객 연결 키 (2) 소득 정제 (3) 미상 처리 (4) 객단가 분모 네 곳만 나란히 비교합니다. 전체 SQL을 처음부터 작성하는 것은 선택 도전입니다.
+먼저 참고 SQL을 실행하고 가장 낮은 소득 구간의 경계 한 곳만 바꿔 결과를 비교합니다. 원래 경계로 되돌린 뒤 같은 조건을 AI에게 전달해 SQL을 받습니다. (1) 고객 연결 키 (2) 소득 열 이름과 타입 (3) 미상 처리 (4) 객단가 분모 네 곳만 나란히 비교합니다. 소득 열 `yearly_income_person`은 이미 숫자라 정제가 필요 없습니다. AI가 `amount`처럼 `$` 제거를 넣으면 숫자 열에 문자열 함수를 쓰는 것이라 오류가 납니다. 전체 SQL을 처음부터 작성하는 것은 선택 도전입니다.
 
 <details markdown="1">
 <summary>소득 구간 분석 참고 SQL</summary>
@@ -178,15 +178,15 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
         AND amount_usd IS NOT NULL AND (errors IS NULL OR TRIM(errors) = '')
 ), customer AS (
     SELECT user_id,
-        SAFE_CAST(REPLACE(REPLACE(yearly_income, '$', ''), ',', '') AS NUMERIC) AS income_usd
-    FROM `finda-13-2026.tabformer.users`
+        yearly_income_person AS income_usd  -- 이미 숫자 열이라 정제 없이 사용
+    FROM `bdai13-bigquery.tabformer.users`
 ), enriched AS (
     SELECT t.user_id, t.amount_usd,
         CASE WHEN u.income_usd IS NULL OR u.income_usd < 0 THEN '0. 소득 미상'
@@ -217,7 +217,7 @@ ORDER BY income_band;
 | 거래 건수가 증가 | cards 복합 키, 오른쪽 키 중복 | 키 검사부터 재실행 |
 | LEFT인데 거래가 감소 | WHERE의 오른쪽 테이블 조건 | 전체 보존 검사와 집단 필터 분리 |
 | 객단가가 예상과 다름 | 금액 정제, 환불 포함, 분모 | 지표 정의와 동일 조건인지 확인 |
-| 소득 미상이 많음 | yearly_income 원문 형식 | 미상→0 대체 없이 원본 프로파일 |
+| 소득 미상이 많음 | `yearly_income_person`의 NULL과 음수 | 미상→0 대체 없이 원본 프로파일 |
 | 미사용 카드가 0장 | 기간, 승인 조건, 복합 키 | 0도 가능한 관측 결과; 억지로 만들지 않음 |
 
 제출할 수업 기록은 SQL 3개 이상, 조인 검증 결과 1개, AI 수정 전후 1쌍, 프로젝트 질문 후보 1개입니다. [분석 리포트 틀](../templates/analysis-report.md)에 관찰과 한계를 분리해 적습니다.

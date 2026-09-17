@@ -7,12 +7,12 @@
 -- Example 1
 WITH user_duplicates AS (
     SELECT user_id
-    FROM `finda-13-2026.tabformer.users`
+    FROM `bdai13-bigquery.tabformer.users`
     GROUP BY user_id
     HAVING COUNT(*) > 1
 ), card_duplicates AS (
     SELECT user, card_index
-    FROM `finda-13-2026.tabformer.cards`
+    FROM `bdai13-bigquery.tabformer.cards`
     GROUP BY user, card_index
     HAVING COUNT(*) > 1
 )
@@ -20,9 +20,9 @@ SELECT
     (SELECT COUNT(*) FROM user_duplicates) AS duplicate_user_keys,
     (SELECT COUNT(*) FROM card_duplicates) AS duplicate_card_keys,
     (SELECT COUNTIF(user_id IS NULL)
-        FROM `finda-13-2026.tabformer.users`) AS null_user_keys,
+        FROM `bdai13-bigquery.tabformer.users`) AS null_user_keys,
     (SELECT COUNTIF(user IS NULL OR card_index IS NULL)
-        FROM `finda-13-2026.tabformer.cards`) AS null_card_keys;
+        FROM `bdai13-bigquery.tabformer.cards`) AS null_card_keys;
 
 
 -- Example 2
@@ -31,7 +31,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -40,8 +40,8 @@ WITH clean AS (
 ), joined AS (
     SELECT t.amount_usd, u.user_id AS matched_user, c.user AS matched_card
     FROM base AS t
-    LEFT JOIN `finda-13-2026.tabformer.users` AS u ON t.user_id = u.user_id
-    LEFT JOIN `finda-13-2026.tabformer.cards` AS c
+    LEFT JOIN `bdai13-bigquery.tabformer.users` AS u ON t.user_id = u.user_id
+    LEFT JOIN `bdai13-bigquery.tabformer.cards` AS c
         ON t.user_id = c.user AND t.card_id = c.card_index
 ), before_join AS (
     SELECT COUNT(*) AS rows_before, SUM(amount_usd) AS amount_before FROM base
@@ -63,7 +63,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -75,7 +75,7 @@ WITH clean AS (
         END AS age_band,
         COALESCE(NULLIF(TRIM(u.gender), ''), '성별 미상') AS gender
     FROM base AS t
-    LEFT JOIN `finda-13-2026.tabformer.users` AS u ON t.user_id = u.user_id
+    LEFT JOIN `bdai13-bigquery.tabformer.users` AS u ON t.user_id = u.user_id
 )
 SELECT age_band, gender, SUM(amount_usd) AS net_amount_usd,
     COUNT(*) AS txn_count, COUNT(DISTINCT user_id) AS active_user_count,
@@ -91,7 +91,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), used_cards AS (
     SELECT DISTINCT user_id, card_id
     FROM clean
@@ -100,7 +100,7 @@ WITH clean AS (
 ), card_status AS (
     SELECT c.user, c.card_index, c.card_brand,
         t.user_id IS NULL AS is_unused
-    FROM `finda-13-2026.tabformer.cards` AS c
+    FROM `bdai13-bigquery.tabformer.cards` AS c
     LEFT JOIN used_cards AS t
         ON c.user = t.user_id AND c.card_index = t.card_id
 )
@@ -119,15 +119,15 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
         AND amount_usd IS NOT NULL AND (errors IS NULL OR TRIM(errors) = '')
 ), customer AS (
     SELECT user_id,
-        SAFE_CAST(REPLACE(REPLACE(yearly_income, '$', ''), ',', '') AS NUMERIC) AS income_usd
-    FROM `finda-13-2026.tabformer.users`
+        yearly_income_person AS income_usd  -- 이미 숫자 열이라 정제 없이 사용
+    FROM `bdai13-bigquery.tabformer.users`
 ), enriched AS (
     SELECT t.user_id, t.amount_usd,
         CASE WHEN u.income_usd IS NULL OR u.income_usd < 0 THEN '0. 소득 미상'

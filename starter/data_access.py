@@ -58,7 +58,7 @@ def get_client(query_project):
 
 
 @st.cache_data(ttl=600, max_entries=4, show_spinner=False)
-def load_mart(backend, query_project='', table='', location='US',
+def load_mart(backend, query_project='', table='', location='asia-northeast3',
               maximum_bytes_billed=100000000, snapshot='mart.duckdb'):
     loaded_at = datetime.now(timezone.utc).isoformat(timespec='seconds')
     if backend == 'bigquery':

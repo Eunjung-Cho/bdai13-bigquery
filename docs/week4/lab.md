@@ -2,7 +2,7 @@
 
 [강의](lecture.md) / [과제](assignment.md) / [AI 검증](../reference/ai-verification.md)
 
-아래 SQL은 독립 실행용입니다. 테이블 경로는 `finda-13-2026.tabformer`이며 실제 권한과 공유 상태는 [환경 준비](../setup.md)를 확인합니다. 각 실행 전 처리 바이트를 확인하고, 결과 수치와 실행 조건을 기록하세요.
+아래 SQL은 독립 실행용입니다. 테이블 경로는 `bdai13-bigquery.tabformer`이며 실제 권한과 공유 상태는 [환경 준비](../setup.md)를 확인합니다. 각 실행 전 처리 바이트를 확인하고, 결과 수치와 실행 조건을 기록하세요.
 
 완성 SQL을 먼저 펼쳐 실행합니다. 첫 실행 뒤에는 **한 곳만 바꿔 보세요**. Top 5를 Top 3으로, 휴면 90일을 180일로 바꾼 다음 원래 조건으로 돌아옵니다. 월 달력을 만드는 코드는 제공된 틀을 사용해도 됩니다. 기본 과제는 결과와 정의를 설명하는 것이며 전체 쿼리 암기는 요구하지 않습니다.
 
@@ -25,7 +25,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -36,7 +36,7 @@ WITH clean AS (
             ELSE CONCAT(CAST(DIV(u.current_age, 10) * 10 AS STRING), '대')
         END AS age_band
     FROM base AS t
-    LEFT JOIN `finda-13-2026.tabformer.users` AS u ON t.user_id = u.user_id
+    LEFT JOIN `bdai13-bigquery.tabformer.users` AS u ON t.user_id = u.user_id
 ), grouped AS (
     SELECT age_band, mcc, SUM(amount_usd) AS net_amount_usd,
         COUNT(*) AS txn_count
@@ -77,7 +77,7 @@ WITH clean AS (
         CASE WHEN use_chip = 'Online Transaction' THEN '온라인'
             WHEN use_chip IN ('Swipe Transaction', 'Chip Transaction') THEN '오프라인'
             ELSE '미분류' END AS channel
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), base AS (
     SELECT * FROM clean
     WHERE tx_date >= DATE '2018-01-01' AND tx_date < DATE '2019-01-01'
@@ -157,7 +157,7 @@ WITH clean AS (
         SAFE_CAST(REPLACE(REPLACE(amount, '$', ''), ',', '') AS NUMERIC) AS amount_usd,
         SAFE.PARSE_DATE('%Y-%m-%d',
             FORMAT('%04d-%02d-%02d', year, month, day)) AS tx_date
-    FROM `finda-13-2026.tabformer.transactions`
+    FROM `bdai13-bigquery.tabformer.transactions`
 ), last_seen AS (
     SELECT user_id, MAX(tx_date) AS last_tx_date
     FROM clean
@@ -171,7 +171,7 @@ WITH clean AS (
             WHEN DATE_DIFF(DATE '2019-01-01', l.last_tx_date, DAY) >= 90
                 THEN '90일 이상 미거래 후보'
             ELSE '90일 미만 거래 관측' END AS activity_status
-    FROM `finda-13-2026.tabformer.users` AS u
+    FROM `bdai13-bigquery.tabformer.users` AS u
     LEFT JOIN last_seen AS l ON u.user_id = l.user_id
 )
 SELECT activity_status, COUNT(*) AS user_count,
