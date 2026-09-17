@@ -147,5 +147,5 @@ FROM compared ORDER BY tx_month;
 ## 출처
 
 - 제공 강의계획서, 4주차 “분해 분석과 인사이트”.
-- [ROW_NUMBER](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/numbering_functions#row_number), [LAG](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/navigation_functions#lag), 2026-09-11 확인.
-- [GENERATE_DATE_ARRAY](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_date_array), [DATE_DIFF](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_diff), 2026-09-11 확인.
+- [ROW_NUMBER](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/numbering_functions#row_number), [LAG](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/navigation_functions#lag).
+- [GENERATE_DATE_ARRAY](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/array_functions#generate_date_array), [DATE_DIFF](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_diff).

@@ -370,4 +370,4 @@ Sandbox에서는 테이블 등의 만료와 기능 제한이 있으므로 생성
 
 - 제공 강의계획서, 5주차 실습과 AI 리팩터링 항목.
 - [뷰 만들기](https://docs.cloud.google.com/bigquery/docs/views), [GoogleSQL DDL](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language).
-- [비용 추정과 통제](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [캐시 결과 사용](https://docs.cloud.google.com/bigquery/docs/cached-results), [BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox). 확인: 2026-09-11.
+- [비용 추정과 통제](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [캐시 결과 사용](https://docs.cloud.google.com/bigquery/docs/cached-results), [BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox).

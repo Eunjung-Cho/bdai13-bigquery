@@ -100,4 +100,4 @@ week5/
 ## 출처
 
 - 제공 강의계획서, 5주차 목표·실습·과제 운영 원칙.
-- [BigQuery 논리 뷰](https://docs.cloud.google.com/bigquery/docs/views-intro), [비용 추정과 통제](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [캐시 결과 사용](https://docs.cloud.google.com/bigquery/docs/cached-results). 확인: 2026-09-11.
+- [BigQuery 논리 뷰](https://docs.cloud.google.com/bigquery/docs/views-intro), [비용 추정과 통제](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [캐시 결과 사용](https://docs.cloud.google.com/bigquery/docs/cached-results).

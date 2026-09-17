@@ -111,4 +111,4 @@ CREATE 문장은 테이블을 쓰는 작업입니다. 본인 데이터셋의 작
 - [ ] SQL의 두 프로젝트 표시가 무엇을 뜻하는지 설명
 - [ ] [SQL 기초 리프레셔](refresher.md) 손풀기
 
-출처: 제공된 강의계획서 2절 및 1·5·6주차. [샌드박스](https://docs.cloud.google.com/bigquery/docs/sandbox), [비용 관리](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [BigQuery 요금](https://cloud.google.com/bigquery/pricing), [BigQuery Python 클라이언트](https://docs.cloud.google.com/bigquery/docs/quickstarts/quickstart-client-libraries). 운영 조건 확인일 2026-09-11.
+출처: 제공된 강의계획서 2절 및 1·5·6주차. [샌드박스](https://docs.cloud.google.com/bigquery/docs/sandbox), [비용 관리](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [BigQuery 요금](https://cloud.google.com/bigquery/pricing), [BigQuery Python 클라이언트](https://docs.cloud.google.com/bigquery/docs/quickstarts/quickstart-client-libraries).

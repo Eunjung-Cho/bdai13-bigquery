@@ -171,5 +171,5 @@ AI가 제안한 `ON t.user_id = c.user` 한 줄을 발견했다면 “틀렸어�
 ## 출처
 
 - 제공 강의계획서, 3주차 “여러 테이블 조인”.
-- [GoogleSQL 조인 문법](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join_types), 2026-09-11 확인.
+- [GoogleSQL 조인 문법](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join_types).
 - [IBM TabFormer](https://github.com/IBM/TabFormer): 본 수업의 합성 카드 거래 데이터 출처.

@@ -225,4 +225,4 @@ ORDER BY income_band;
 ## 출처
 
 - 제공 강의계획서, 3주차 실습과 AI 검증.
-- [GoogleSQL 조인 문법](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join_types), 2026-09-11 확인.
+- [GoogleSQL 조인 문법](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join_types).

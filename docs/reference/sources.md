@@ -31,4 +31,4 @@
 - [DuckDB Python](https://duckdb.org/docs/stable/clients/python/overview.html): Python에서 SQL과 파일 데이터베이스 사용.
 - [Colab FAQ](https://research.google.com/colaboratory/faq.html): 런타임·자원·사용 범위.
 
-운영 조건 확인일은 2026-09-11입니다. 무료 한도, 서비스 화면과 정책은 바뀔 수 있으므로 개강 전에 링크의 최신 안내를 다시 확인합니다.
+무료 한도, 서비스 화면과 정책은 바뀔 수 있으므로 개강 전에 링크의 최신 안내를 다시 확인합니다.

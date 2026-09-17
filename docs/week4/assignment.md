@@ -76,4 +76,4 @@ AI에 질문 1의 집계표를 주고 요약을 요청합니다. 실제 생성 �
 ## 출처
 
 - 제공 강의계획서, 4주차 및 개인 최종 프로젝트 병행 안내.
-- [GoogleSQL 순위 함수](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/numbering_functions), [LAG](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/navigation_functions#lag), [DATE_DIFF](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_diff), 2026-09-11 확인.
+- [GoogleSQL 순위 함수](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/numbering_functions), [LAG](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/navigation_functions#lag), [DATE_DIFF](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#date_diff).

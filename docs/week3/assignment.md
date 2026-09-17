@@ -78,4 +78,4 @@ AI에 실습 데이터의 개별 거래 행, 개인 계정 정보, 토큰을 보
 ## 출처
 
 - 제공 강의계획서, 3주차 과제 설계 범위 및 AI 사용 유의사항.
-- [GoogleSQL 조인 문법](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join_types), 2026-09-11 확인.
+- [GoogleSQL 조인 문법](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join_types).

@@ -160,4 +160,4 @@ flowchart LR
 
 오늘의 제출물은 실행한 SQL, 처리 바이트 기록, 데이터 함정 세 가지, AI가 생성한 부분과 검증 방법입니다. 좋은 첫 분석은 “데이터가 깨끗하다”라는 선언보다 “어떤 조건과 한계를 확인했다”라는 기록을 남깁니다. 다음 주에는 이 기록을 [지표 정의서](../templates/metric-spec.md)로 연결합니다.
 
-출처: 제공된 강의계획서 1주차; [IBM TabFormer](https://github.com/IBM/TabFormer), [BigQuery 비용 통제](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [Sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox), [Google 언어 모델 기초](https://developers.google.com/machine-learning/crash-course/llm). 공식 기술 문서 확인: 2026-09-11.
+출처: 제공된 강의계획서 1주차; [IBM TabFormer](https://github.com/IBM/TabFormer), [BigQuery 비용 통제](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [Sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox), [Google 언어 모델 기초](https://developers.google.com/machine-learning/crash-course/llm).

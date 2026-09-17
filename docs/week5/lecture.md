@@ -237,4 +237,4 @@ AI가 생성한 변경 목록과 원본 SQL을 나란히 읽습니다. 같은 �
 - 제공 강의계획서, 5주차 「뷰와 데이터 마트: 반복 분석을 위한 기반 만들기」.
 - [BigQuery 논리 뷰](https://docs.cloud.google.com/bigquery/docs/views-intro), [GoogleSQL DDL](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language).
 - [파티션 테이블](https://docs.cloud.google.com/bigquery/docs/partitioned-tables), [클러스터 테이블](https://docs.cloud.google.com/bigquery/docs/clustered-tables), [비용 추정과 통제](https://docs.cloud.google.com/bigquery/docs/best-practices-costs).
-- [IBM TabFormer](https://github.com/IBM/TabFormer). 기술 문서 확인: 2026-09-11.
+- [IBM TabFormer](https://github.com/IBM/TabFormer).

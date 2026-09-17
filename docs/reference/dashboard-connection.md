@@ -140,4 +140,4 @@ DuckDB는 BigQuery의 조회 권한이나 무료 쿼리 한도를 없애 주지 
 - 직접 연결용 서비스 계정을 사용할 수 있는가? 어려우면 Colab 조회→DuckDB 경로는 되는가?
 - 필터를 바꿨을 때 SQL과 앱의 합계·분모가 일치하는가?
 
-출처: [BigQuery Python·샌드박스](https://docs.cloud.google.com/bigquery/docs/quickstarts/quickstart-client-libraries), [Streamlit BigQuery 연결](https://docs.streamlit.io/develop/tutorials/databases/bigquery), [무료 배포](https://docs.streamlit.io/deploy/streamlit-community-cloud), [DuckDB Python](https://duckdb.org/docs/stable/clients/python/overview.html), [Colab FAQ](https://research.google.com/colaboratory/faq.html). 2026-09-11 확인.
+출처: [BigQuery Python·샌드박스](https://docs.cloud.google.com/bigquery/docs/quickstarts/quickstart-client-libraries), [Streamlit BigQuery 연결](https://docs.streamlit.io/develop/tutorials/databases/bigquery), [무료 배포](https://docs.streamlit.io/deploy/streamlit-community-cloud), [DuckDB Python](https://duckdb.org/docs/stable/clients/python/overview.html), [Colab FAQ](https://research.google.com/colaboratory/faq.html).
