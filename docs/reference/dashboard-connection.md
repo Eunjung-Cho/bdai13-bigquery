@@ -5,6 +5,9 @@
 [Streamlit 기본 앱 다운로드](../downloads/streamlit-starter.zip){ .md-button .md-button--primary }
 [Colab에서 DuckDB 노트북 열기](https://colab.research.google.com/github/Eunjung-Cho/bdai13-bigquery/blob/main/docs/downloads/bigquery-duckdb.ipynb){ .md-button }
 
+!!! note "먼저 만들어야 하는 표"
+    `mart_monthly_mcc`는 원본 테이블이 아닙니다. `transactions`, `users`, `cards`만 보이는 처음 상태에서는 아직 없습니다. 5주차 실습에서 `bdai13-bigquery.bdai13.mart_monthly_mcc`를 만든 뒤에만 이 페이지와 Colab 노트북을 실행합니다. 이 수업의 원본과 마트는 모두 `asia-northeast3`(서울)에 둡니다.
+
 ## 왜 직접 연결을 할 수 있나요?
 
 Google의 BigQuery 클라이언트 라이브러리 빠른 시작은 **결제 등록 없는 샌드박스 사용을 지원**합니다. Data Studio의 BigQuery 커넥터가 결제 연결 프로젝트를 요구하는 것과는 다른 경로입니다. 무료 한도 내에서 쿼리를 실행하며, 무료 한도 초과, 샌드박스 만료, 계정 권한은 따로 관리합니다.
@@ -21,7 +24,7 @@ flowchart LR
 
 ## 1. 먼저 Colab에서 연결 확인하기
 
-초급 수강생은 Python 설치 없이 Colab에서 아래 순서로 연결을 확인할 수 있습니다. 위의 **Colab에서 DuckDB 노트북 열기** 버튼을 누르고 각 셀을 차례대로 실행합니다. 이 단계는 직접 연결의 로그인, 쿼리 확인이며 DuckDB가 필수는 아닙니다.
+초급 수강생은 Python 설치 없이 Colab에서 아래 순서로 연결을 확인할 수 있습니다. 위의 **Colab에서 DuckDB 노트북 열기** 버튼을 누르고 각 셀을 차례대로 실행합니다. 처음 열 때 “Google에서 작성하지 않은 노트북” 안내가 나오면, 이 강의 사이트의 링크로 열었는지와 보이는 코드를 확인한 뒤 계속합니다. 이 단계는 직접 연결의 로그인, 쿼리 확인이며 DuckDB가 필수는 아닙니다.
 
 ```python
 from google.colab import auth
@@ -33,7 +36,7 @@ auth.authenticate_user()
 ```python
 from google.cloud import bigquery
 
-QUERY_PROJECT = 'YOUR_PROJECT'  # 학생 실행 프로젝트 ID
+QUERY_PROJECT = 'bdai13-bigquery'
 client = bigquery.Client(project=QUERY_PROJECT)
 job = client.query('SELECT 1 AS connected')
 print(list(job.result()))
@@ -45,7 +48,7 @@ print(list(job.result()))
 query = '''
 SELECT tx_month, mcc, channel, amount_usd,
        txn_count, fraud_count, fraud_labeled_count
-FROM `YOUR_PROJECT.bdai13.mart_monthly_mcc`
+FROM `bdai13-bigquery.bdai13.mart_monthly_mcc`
 WHERE tx_month >= DATE '2018-01-01'
   AND tx_month < DATE '2019-01-01'
 '''
@@ -80,15 +83,15 @@ Colab에서는 사람이 직접 Google 로그인합니다. 공개 앱 서버는 
 ```toml
 [data]
 backend = "bigquery"
-query_project = "YOUR_PROJECT"
-table = "YOUR_PROJECT.bdai13.mart_monthly_mcc"
-location = "US"
+query_project = "bdai13-bigquery"
+table = "bdai13-bigquery.bdai13.mart_monthly_mcc"
+location = "asia-northeast3"
 maximum_bytes_billed = 100000000
 ```
 
 Google에서 받은 서비스 계정 JSON은 앱이 로그인할 때 쓸 정보를 담은 파일입니다. 파일 안의 항목 이름과 값을 예제의 `[gcp_service_account]` 아래에 맞춰 입력합니다. 줄바꿈이 포함된 private_key는 예제 양식에 맞춰 입력합니다. **실제 키를 GitHub에 올리거나 AI에게 보내지 않습니다.** 프로젝트 ID, 테이블 ID, 리전만 AI에 알려 주면 코드 수정에 충분합니다.
 
-5주차 마트의 필수 열은 `tx_month`, `mcc`, `channel`, `amount_usd`, `txn_count`, `fraud_count`, `fraud_labeled_count`입니다. 이름을 바꾸면 코드도 함께 수정해야 합니다. `YOUR_PROJECT`는 학생마다 달라지며 강사 원본 ID를 무조건 넣는 칸이 아닙니다.
+5주차 마트의 필수 열은 `tx_month`, `mcc`, `channel`, `amount_usd`, `txn_count`, `fraud_count`, `fraud_labeled_count`입니다. 이름을 바꾸면 코드도 함께 수정해야 합니다. 팀별로 별도 프로젝트를 쓰기로 정한 경우에만 위의 두 주소를 그 프로젝트 주소로 함께 바꿉니다.
 
 ## 4. GitHub에서 Community Cloud로 배포
 
@@ -116,7 +119,7 @@ DuckDB는 여러 표를 파일 하나에 담아 SQL로 읽을 수 있는 도구�
 
 1. 패키지 설치 셀 실행.
 2. 본인 Google 로그인.
-3. 실행 프로젝트, 집계 마트, 리전 입력.
+3. 기본값 `bdai13-bigquery`, `bdai13-bigquery.bdai13.mart_monthly_mcc`, `asia-northeast3`을 확인. 팀별 별도 프로젝트를 쓰는 경우에만 세 값을 함께 변경.
 4. BigQuery에서 집계 결과를 DataFrame으로 가져오기.
 5. DuckDB 파일의 `mart_monthly_mcc`와 `snapshot_metadata` 테이블 생성.
 6. 행 수, 금액 합, 분모 합 대조 후 `mart.duckdb` 다운로드.

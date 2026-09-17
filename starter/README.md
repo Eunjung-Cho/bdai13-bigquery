@@ -5,7 +5,7 @@
 ## 직접 연결
 
 1. 이 폴더의 내용을 새 GitHub 저장소 루트에 넣습니다. `.streamlit/config.toml`도 포함합니다.
-2. 5주차의 `YOUR_PROJECT.bdai13.mart_monthly_mcc`를 준비합니다.
+2. 5주차의 `bdai13-bigquery.bdai13.mart_monthly_mcc`를 준비합니다. 처음에는 원본 테이블만 있으므로, 이 마트는 5주차 SQL을 실행한 뒤에 생깁니다.
 3. 실행 프로젝트에 BigQuery API를 활성화하고, 앱 서비스 계정에 실행 프로젝트의 BigQuery Job User와 해당 집계 마트의 BigQuery Data Viewer를 부여합니다.
 4. `.streamlit/secrets.toml.example`을 참고해 Streamlit Community Cloud의 Secrets에 값을 넣습니다. 실제 인증키 파일은 저장소에 올리지 않습니다. 키 생성이 조직 정책으로 차단되어 있으면 Colab 사용자 로그인 예비 경로를 사용합니다.
 5. Community Cloud에서 저장소와 `app.py`, Python 3.12 이상을 선택해 배포합니다.
