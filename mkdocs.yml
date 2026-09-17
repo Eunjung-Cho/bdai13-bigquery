@@ -1,6 +1,5 @@
 site_name: BDAI 13기 · BigQuery 프로젝트
 site_description: 카드 거래 데이터로 배우는 지표 정의, SQL 검증, 데이터 마트와 대시보드
-site_author: 조은정
 site_url: https://eunjung-cho.github.io/bdai13-bigquery/
 repo_url: https://github.com/Eunjung-Cho/bdai13-bigquery
 repo_name: Eunjung-Cho/bdai13-bigquery
@@ -66,7 +65,7 @@ plugins:
       separator: '[\s\-\.\_,:;!?()\[\]]+'
 extra_css:
   - assets/stylesheets/extra.css
-copyright: Copyright &copy; 2026 조은정
+copyright: Copyright &copy; 2026 BDAI 13기 프로젝트분반 08
 validation:
   nav:
     omitted_files: warn

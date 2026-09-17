@@ -1,7 +1,7 @@
 # BigQuery로 배우는 대용량 데이터 분석과 대시보드
 
 <div class="course-intro" markdown>
-**BDAI 13기 프로젝트분반 08 · 조은정**  
+**BDAI 13기 프로젝트분반 08**<br>
 금요일 20:00–22:00 · 실시간 온라인 · 총 6회
 
 약 2,400만 건의 합성 카드 거래 데이터로 비즈니스 질문에 답합니다. 매주 SQL을 작성하고, AI가 만든 답을 검증하며, 마지막에는 분석 SQL·데이터 마트·대시보드를 포트폴리오로 연결합니다.
@@ -59,4 +59,4 @@ flowchart LR
 
 SELECT, WHERE, GROUP BY, JOIN을 한 번 접했다면 시작할 수 있습니다. Python과 통계 지식, BigQuery와 Streamlit 경험은 필요하지 않습니다. 준비물은 Google 계정, Chrome, 사용할 수 있는 생성형 AI 도구 하나입니다.
 
-출처: 제공된 「BDAI 13기 강의계획서 프로젝트분반 조은정 Final」의 교과목 정보·수업 개요·주차별 계획. 데이터의 합성 여부: [IBM TabFormer](https://github.com/IBM/TabFormer).
+출처: 제공된 「BDAI 13기 강의계획서 프로젝트분반 Final」의 교과목 정보·수업 개요·주차별 계획. 데이터의 합성 여부: [IBM TabFormer](https://github.com/IBM/TabFormer).
