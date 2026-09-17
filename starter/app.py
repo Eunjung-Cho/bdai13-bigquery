@@ -1,12 +1,10 @@
 """BDAI 13기: 완성 코드 실행 → 한 부분 수정 → SQL과 대조."""
-import pandas as pd
 import streamlit as st
 from data_access import load_mart, summarize
 
 # 실습 1: 제목만 바꿔 봅니다.
 st.set_page_config(page_title='카드 소비 리포트', layout='wide')
 st.title('카드 소비 리포트')
-st.caption('2018년 · 합성 카드 거래 · 월별 업종·채널 집계')
 
 try:
     settings = dict(st.secrets['data'])
@@ -16,13 +14,12 @@ except (FileNotFoundError, KeyError):
 
 try:
     with st.spinner('집계 마트를 불러오는 중입니다.'):
-        data, metadata = load_mart(**settings)
+        data, _ = load_mart(**settings)
 except Exception:
     # 인증값·계정정보가 담길 수 있는 원문 오류를 공개 화면에 출력하지 않습니다.
     st.error('마트를 읽지 못했습니다. 프로젝트·리전·조회 권한·쿼리 상한·마트 스키마를 강의 안내와 비교하세요.')
     st.stop()
 
-st.caption(f"{metadata['mode']} · 데이터 취득 시각 {metadata['loaded_at']} · 앱 조회 캐시 최대 10분")
 if data.empty:
     st.info('조회 기간에 집계 데이터가 없습니다. 원천 범위와 5주차 마트를 확인하세요.')
     st.stop()
@@ -31,19 +28,21 @@ if data.empty:
 with st.sidebar:
     st.header('분석 조건')
     months = sorted(data.tx_month.dt.strftime('%Y-%m').unique())
-    chosen_months = st.multiselect('월', months, default=months, key='months')
+    chosen_month = st.selectbox('월', ['전체', *months], key='month')
     channels = sorted(data.channel.unique())
-    chosen_channels = st.multiselect('채널', channels, default=channels, key='channels')
+    chosen_channel = st.selectbox('채널', ['전체', *channels], key='channel')
     mcc_options = sorted(data.mcc.unique())
-    chosen_mcc = st.multiselect('업종 코드', mcc_options, default=mcc_options, key='mcc')
+    chosen_mcc = st.selectbox('업종 코드', ['전체', *mcc_options], key='mcc')
 
-filtered = data[
-    data.tx_month.dt.strftime('%Y-%m').isin(chosen_months)
-    & data.channel.isin(chosen_channels)
-    & data.mcc.isin(chosen_mcc)
-].copy()
+filtered = data.copy()
+if chosen_month != '전체':
+    filtered = filtered[filtered.tx_month.dt.strftime('%Y-%m') == chosen_month]
+if chosen_channel != '전체':
+    filtered = filtered[filtered.channel == chosen_channel]
+if chosen_mcc != '전체':
+    filtered = filtered[filtered.mcc == chosen_mcc]
 if filtered.empty:
-    st.info('선택한 조건에 해당하는 데이터가 없습니다. 필터를 하나 이상 선택하세요.')
+    st.info('선택한 조건에 해당하는 데이터가 없습니다. 다른 조건을 선택하세요.')
     st.stop()
 
 # 실습 3: 평균의 평균 대신 분자와 분모의 합으로 계산합니다.
@@ -66,14 +65,3 @@ by_mcc = by_mcc.sort_values(['amount_usd', 'mcc'], ascending=[False, True]).head
 by_mcc['amount_usd'] = by_mcc.amount_usd.astype(float)
 st.bar_chart(by_mcc, x='mcc', y='amount_usd', horizontal=True,
              x_label='MCC 업종 코드', y_label='순거래액 USD')
-
-with st.expander('집계표와 지표 정의 확인'):
-    shown = filtered.copy()
-    shown['amount_usd'] = shown.amount_usd.astype(float)
-    st.dataframe(shown, hide_index=True)
-    st.write('기간 내 날짜·금액이 유효하고 errors가 비어 있는 거래를 승인으로 간주한 교육용 정의입니다. 음수 금액을 포함합니다.')
-    st.write('객단가 = 순거래액 합 / 거래 건수 합. 사기 라벨 비율 = 사기 건수 합 / 라벨 확인 건수 합.')
-    st.write('활성 고객 수는 이 마트에서 합산하지 않습니다. 합성 데이터의 차이는 실제 고객 집단의 원인을 입증하지 않습니다.')
-    if metadata['processed_bytes'] is not None:
-        st.caption(f"조회 처리량: {metadata['processed_bytes']:,} bytes · BigQuery 캐시 적중: {metadata['cache_hit']}")
-
