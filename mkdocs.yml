@@ -1,4 +1,4 @@
-site_name: BDAI 13기 · BigQuery 프로젝트
+site_name: BDAI 13기 / BigQuery 프로젝트
 site_description: 카드 거래 데이터로 배우는 지표 정의, SQL 검증, 데이터 마트와 대시보드
 site_url: https://eunjung-cho.github.io/bdai13-bigquery/
 repo_url: https://github.com/Eunjung-Cho/bdai13-bigquery
@@ -80,27 +80,27 @@ nav:
       - 개강 전 환경 준비: setup.md
       - SQL 기초 리프레셔: refresher.md
       - 데이터와 스키마: data-guide.md
-  - 1주차 · 첫 탐색:
+  - 1주차 / 첫 탐색:
       - 강의: week1/lecture.md
       - 실습: week1/lab.md
       - 과제: week1/assignment.md
-  - 2주차 · 지표와 집계:
+  - 2주차 / 지표와 집계:
       - 강의: week2/lecture.md
       - 실습: week2/lab.md
       - 과제: week2/assignment.md
-  - 3주차 · 조인과 검증:
+  - 3주차 / 조인과 검증:
       - 강의: week3/lecture.md
       - 실습: week3/lab.md
       - 과제: week3/assignment.md
-  - 4주차 · 분해 분석:
+  - 4주차 / 분해 분석:
       - 강의: week4/lecture.md
       - 실습: week4/lab.md
       - 과제: week4/assignment.md
-  - 5주차 · 뷰와 데이터 마트:
+  - 5주차 / 뷰와 데이터 마트:
       - 강의: week5/lecture.md
       - 실습: week5/lab.md
       - 과제: week5/assignment.md
-  - 6주차 · 대시보드와 발표:
+  - 6주차 / 대시보드와 발표:
       - 강의: week6/lecture.md
       - 실습: week6/lab.md
       - 최종 제출: week6/assignment.md
