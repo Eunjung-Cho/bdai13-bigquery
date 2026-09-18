@@ -113,3 +113,6 @@ nav:
       - 6주 핵심 정리: reference/summary.md
       - 출처와 읽을거리: reference/sources.md
       - 실습 파일 다운로드: downloads.md
+      - 쿼리 가독성을 높이는 팁: reference/query-style-tips.md
+      - 쿼리 작성 순서와 실행 순서: reference/query-execution-order.md
+      - BigQuery 주요 문법 정리: reference/bigquery-syntax.md
