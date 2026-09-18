@@ -21,7 +21,7 @@
 | [3주차](week3/lecture.md) | 10/16 | 고객과 카드를 붙여도 숫자가 보존될까? | 조인 SQL, 키와 누락 점검, 주제 후보 |
 | [4주차](week4/lecture.md) | 10/23 | 어느 기간과 집단에서 지표가 변했을까? | 분해 분석, 전월비, 프로젝트 중간안 |
 | [5주차](week5/lecture.md) | 10/30 | 같은 분석을 적은 반복 작업으로 만들 수 있을까? | 정제 뷰, 월간 마트, 처리 바이트 비교 |
-| [6주차](week6/lecture.md) | 11/6 | 검증한 숫자를 다른 사람이 읽을 수 있을까? | Streamlit 앱, 7분 발표, 포트폴리오 |
+| [6주차](week6/lecture.md) | 11/6 | 검증한 숫자를 다른 사람이 읽을 수 있을까? | [Streamlit 앱](https://bdai13-card-dashboard.streamlit.app/), 7분 발표, 포트폴리오 |
 
 ```mermaid
 flowchart LR

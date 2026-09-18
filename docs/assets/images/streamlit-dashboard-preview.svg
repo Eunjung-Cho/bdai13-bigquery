@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">카드 소비 리포트 Streamlit 대시보드 예시</title>
+  <desc id="desc">월, 채널, 업종 코드 필터와 네 개의 지표, 월별 순거래액 선 그래프와 업종별 순거래액 막대 그래프를 보여 주는 화면</desc>
+  <rect width="1200" height="700" rx="12" fill="#ffffff"/>
+  <rect width="220" height="700" rx="12" fill="#f3f5fa"/>
+  <rect x="220" width="980" height="700" fill="#ffffff"/>
+  <text x="32" y="58" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#242933">분석 조건</text>
+  <g font-family="Arial, sans-serif" font-size="15" fill="#586273">
+    <text x="32" y="105">월</text><text x="32" y="192">채널</text><text x="32" y="279">업종 코드</text>
+  </g>
+  <g fill="#ffffff" stroke="#d9dee8">
+    <rect x="24" y="118" width="172" height="42" rx="6"/><rect x="24" y="205" width="172" height="42" rx="6"/><rect x="24" y="292" width="172" height="42" rx="6"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="16" fill="#303640">
+    <text x="40" y="145">전체</text><text x="40" y="232">전체</text><text x="40" y="319">전체</text>
+  </g>
+  <g fill="#6d7480"><path d="M177 136l7 7 7-7"/><path d="M177 223l7 7 7-7"/><path d="M177 310l7 7 7-7"/></g>
+  <text x="266" y="83" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#19202a">카드 소비 리포트</text>
+  <g font-family="Arial, sans-serif">
+    <text x="266" y="135" font-size="15" fill="#68717d">순거래액 USD</text><text x="266" y="174" font-size="30" fill="#202631">$72,187,810.03</text>
+    <text x="498" y="135" font-size="15" fill="#68717d">거래 건수</text><text x="498" y="174" font-size="30" fill="#202631">1,694,535</text>
+    <text x="686" y="135" font-size="15" fill="#68717d">거래당 순금액 USD</text><text x="686" y="174" font-size="30" fill="#202631">$42.60</text>
+    <text x="925" y="135" font-size="15" fill="#68717d">사기 라벨 비율</text><text x="925" y="174" font-size="30" fill="#202631">0.14%</text>
+  </g>
+  <text x="266" y="235" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#202631">월별 순거래액</text>
+  <g stroke="#e6e9ef" stroke-width="1"><path d="M300 520H1135"/><path d="M300 460H1135"/><path d="M300 400H1135"/><path d="M300 340H1135"/><path d="M300 280H1135"/></g>
+  <path d="M320 374 L390 420 L460 356 L530 380 L600 368 L670 392 L740 350 L810 361 L880 342 L950 378 L1020 354 L1090 363" fill="none" stroke="#2f6fba" stroke-width="4"/>
+  <g fill="#2f6fba"><circle cx="320" cy="374" r="4"/><circle cx="390" cy="420" r="4"/><circle cx="460" cy="356" r="4"/><circle cx="530" cy="380" r="4"/><circle cx="600" cy="368" r="4"/><circle cx="670" cy="392" r="4"/><circle cx="740" cy="350" r="4"/><circle cx="810" cy="361" r="4"/><circle cx="880" cy="342" r="4"/><circle cx="950" cy="378" r="4"/><circle cx="1020" cy="354" r="4"/><circle cx="1090" cy="363" r="4"/></g>
+  <text x="266" y="570" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#202631">업종별 순거래액 상위 10개</text>
+  <g fill="#2f6fba"><rect x="320" y="610" width="580" height="14" rx="3"/><rect x="320" y="638" width="470" height="14" rx="3"/><rect x="320" y="666" width="390" height="14" rx="3"/></g>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#68717d"><text x="285" y="622">4829</text><text x="285" y="650">5411</text><text x="285" y="678">5300</text><text x="915" y="622">순거래액 USD</text></g>
+</svg>
