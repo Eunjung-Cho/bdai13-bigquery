@@ -1,5 +1,7 @@
 # 완성 대시보드 배포하기
 
+완성 앱: https://bdai13-card-dashboard.streamlit.app/
+
 이 저장소의 `starter/mart.duckdb`는 수업용 합성 카드 거래를 월, 업종, 채널별로 합친 파일입니다. 원본 거래와 개인별 자료는 들어 있지 않습니다. 저장된 시점의 집계이므로 BigQuery 변경 내용이 자동 반영되지는 않습니다.
 
 1. Streamlit Community Cloud에서 GitHub 계정으로 로그인합니다.
@@ -10,7 +12,7 @@
 | Repository | `Eunjung-Cho/bdai13-bigquery` |
 | Branch | `main` |
 | Main file path | `starter/app.py` |
-| Python | `3.12` |
+| Python | `3.14` (로컬 점검과 같은 버전) |
 
 3. Advanced settings의 Secrets에 다음 내용을 넣습니다.
 
