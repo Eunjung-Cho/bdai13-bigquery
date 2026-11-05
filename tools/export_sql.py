@@ -32,3 +32,7 @@ with ZipFile(DOCS/'downloads/streamlit-starter.zip', 'w', ZIP_DEFLATED) as archi
     for name in ['app.py', 'data_access.py', 'requirements.txt', 'README.md', '.gitignore',
                  '.streamlit/config.toml', '.streamlit/secrets.toml.example']:
         archive.write(ROOT/'starter'/name, name)
+with ZipFile(DOCS/'downloads/streamlit-app.zip', 'w', ZIP_DEFLATED) as archive:
+    for name in ['app.py', 'data_access.py', 'requirements.txt', '.streamlit/config.toml']:
+        archive.write(ROOT/'starter'/name, name)
+    archive.writestr('.streamlit/secrets.toml', '[data]\nbackend = "duckdb"\nsnapshot = "mart.duckdb"\n')

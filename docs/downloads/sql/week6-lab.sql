@@ -6,6 +6,16 @@
 
 -- Example 1
 SELECT
+    COUNT(*) AS row_count,
+    MIN(tx_month) AS first_month,
+    MAX(tx_month) AS last_month,
+    SUM(txn_count) AS txn_count,
+    SUM(amount_usd) AS net_amount_usd
+FROM `YOUR_PROJECT.bdai13.mart_monthly_mcc`;
+
+
+-- Example 2
+SELECT
     SUM(amount_usd) AS net_amount_usd,
     SUM(txn_count) AS txn_count,
     SUM(fraud_count) AS fraud_count,

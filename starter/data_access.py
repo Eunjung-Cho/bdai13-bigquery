@@ -1,4 +1,4 @@
-"""데이터 연결용 코드. 학생은 먼저 app.py의 화면 부분을 수정합니다."""
+"""데이터 연결용 코드. 먼저 app.py의 화면 부분을 수정합니다."""
 from datetime import date, datetime, timezone
 from decimal import Decimal
 from pathlib import Path

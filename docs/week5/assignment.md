@@ -95,7 +95,7 @@ week5/
 - [ ] 현재 마트가 답할 수 없는 질문을 명시했다.
 - [ ] 생성 SQL을 다시 실행할 위치와 범위를 설명했다.
 - [ ] 6주차 대시보드에 넘길 열과 데이터 갱신 시점을 준비했다.
-- [ ] [Streamlit 연결 안내](../reference/dashboard-connection.md)를 따라 기본 앱을 미리 열어 보았다. 서비스 계정이 막히면 Colab 본인 로그인으로 마트를 조회할 수 있는지 확인했다.
+- [ ] [Streamlit 연결 안내](../reference/dashboard-connection.md)를 읽고 6주차 경로를 확인했다. Colab 본인 로그인으로 마트를 조회할 수 있는지 확인했다.
 
 ## 출처
 

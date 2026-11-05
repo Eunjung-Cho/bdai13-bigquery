@@ -71,7 +71,7 @@ SELECT 목록을 읽기 전에 원본과 결과의 한 행을 설명하면 JOIN�
 
 ## BigQuery와 DuckDB를 구분하기
 
-BigQuery와 DuckDB는 둘 다 SQL을 쓰지만 일부 명령의 이름과 쓰는 방법이 다릅니다. 예를 들어 BigQuery의 `SAFE_CAST`는 DuckDB에서 `TRY_CAST`로 대응할 수 있고, `SAFE_DIVIDE` 대신 `NULLIF(분모, 0)`로 나누는 수가 0일 때 NULL로 바꿀 수 있습니다. 완성된 BigQuery SQL을 DuckDB에 그대로 붙여 넣어 항상 실행된다고 가정하지 마세요. 예비 경로에서는 이미 정제된 마트를 가져와 간단한 SELECT, GROUP BY만 연습합니다.
+BigQuery와 DuckDB는 둘 다 SQL을 쓰지만 일부 명령의 이름과 쓰는 방법이 다릅니다. 예를 들어 BigQuery의 `SAFE_CAST`는 DuckDB에서 `TRY_CAST`로 대응할 수 있고, `SAFE_DIVIDE` 대신 `NULLIF(분모, 0)`로 나누는 수가 0일 때 NULL로 바꿀 수 있습니다. 완성된 BigQuery SQL을 DuckDB에 그대로 붙여 넣어 항상 실행된다고 가정하지 마세요. 6주차 DuckDB 경로에서는 이미 정제된 마트를 가져와 간단한 SELECT, GROUP BY만 연습합니다.
 
 출처: [GoogleSQL](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax), [변환 함수](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions), [DuckDB TRY_CAST](https://duckdb.org/docs/stable/sql/expressions/cast.html).
 

@@ -49,7 +49,7 @@ project/
   ai-log.md                 AI 사용 부분과 검증
 ```
 
-서비스 계정 키, 비밀번호는 위 폴더나 공개 저장소에 포함하지 않습니다. 직접 연결은 Streamlit의 Secrets 설정을 사용합니다. 자세한 내용은 [앱 데이터 연결](reference/dashboard-connection.md)에 있습니다.
+서비스 계정 키, 비밀번호는 위 폴더나 공개 저장소에 포함하지 않습니다. 수업 기본 경로는 키 없이 `mart.duckdb`를 읽습니다. BigQuery 직접 연결을 고르면 Streamlit의 Secrets 설정을 사용합니다. 자세한 내용은 [앱 데이터 연결](reference/dashboard-connection.md)에 있습니다.
 
 ## 7분 발표 구성
 

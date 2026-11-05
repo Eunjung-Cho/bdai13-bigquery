@@ -22,7 +22,7 @@
 - [클러스터 테이블](https://docs.cloud.google.com/bigquery/docs/clustered-tables): 조건에 맞는 데이터가 있는 부분만 골라 읽는 방법.
 - [클라이언트 라이브러리 빠른 시작](https://docs.cloud.google.com/bigquery/docs/quickstarts/quickstart-client-libraries): 결제 등록 없는 샌드박스에서 Python으로 조회하는 경로.
 
-## Streamlit과 예비 경로
+## Streamlit과 DuckDB 경로
 
 - [Streamlit의 BigQuery 연결](https://docs.streamlit.io/develop/tutorials/databases/bigquery): Python 클라이언트와 Secrets.
 - [Community Cloud](https://docs.streamlit.io/deploy/streamlit-community-cloud): GitHub 기반 무료 앱 배포.
