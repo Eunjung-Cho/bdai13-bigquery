@@ -233,11 +233,29 @@ st.metric('사기 라벨 비율', '0.16%', delta='+0.02%p', delta_color='inverse
 
 회사 자료로 연습할 때는 이름, 거래처, 금액을 더미 값으로 바꾼 뒤 넣습니다. 인증키와 `secrets.toml`도 넣지 않습니다.
 
-## 12. 공개 앱의 데이터와 인증
+## 12. 내 GitHub로 공개 배포하기 / 선택
 
-수업 실습은 내 컴퓨터에서 여는 데까지입니다. `localhost` 주소는 다른 사람이 열 수 없습니다. 다른 사람에게 앱 주소를 주려면 Streamlit Community Cloud에 올립니다. 절차는 [데이터 연결 안내](../reference/dashboard-connection.md)에 있습니다.
+수업 실습은 내 컴퓨터에서 여는 데까지입니다. `localhost` 주소는 다른 사람이 열 수 없습니다. 다른 사람에게 앱 주소를 주려면 GitHub에 코드를 올리고 Streamlit Community Cloud(무료)에서 실행합니다. 이 강의 사이트 같은 GitHub Pages는 글과 그림만 보여 주므로 Python 앱을 실행하지 못합니다.
 
-공개하면 앱에 담긴 집계값은 방문자 누구나 봅니다. 공개 가능한 집계만 올리고, 처음 열 때의 준비 시간, 자료 취득 시각, 갱신 주기를 설명합니다. BigQuery에서 직접 읽도록 바꾸면 서비스 계정 키가 필요합니다. 키는 Streamlit Secrets에 넣고 공개 저장소에 올리지 않습니다.
+준비물은 GitHub 계정과 `mart.duckdb`까지 넣은 앱 폴더입니다. 서비스 계정 키는 필요 없습니다.
+
+1. github.com 오른쪽 위 **+ > New repository**에서 새 저장소를 **Public**으로 만듭니다. 예: `bdai13-dashboard`.
+2. 저장소 화면에서 **Add file > Upload files**를 누르고 `app.py`, `data_access.py`, `requirements.txt`, `mart.duckdb`, `.streamlit` 폴더를 끌어다 놓은 뒤 **Commit changes**를 누릅니다.
+3. [share.streamlit.io](https://share.streamlit.io/)에 GitHub 계정으로 로그인하고 **Create app**에서 저장소, 브랜치 `main`, 파일 `app.py`를 고릅니다.
+4. **Advanced settings**에서 Python을 3.14로 고르고 Secrets 칸에 아래 세 줄을 넣은 뒤 **Deploy**를 누릅니다.
+
+    ```toml
+    [data]
+    backend = "duckdb"
+    snapshot = "mart.duckdb"
+    ```
+
+5. 1~2분 뒤 생기는 `○○.streamlit.app` 주소에서 순거래액 $72,187,810.03이 보이면 성공입니다. 이 주소를 최종 제출의 앱 URL로 냅니다.
+
+!!! warning "공개 전에 확인할 것"
+    공개하면 앱에 담긴 집계값은 방문자 누구나 봅니다. 공개해도 되는 집계만 올립니다. 한동안 아무도 열지 않으면 앱이 잠들므로 발표 직전에 한 번 열어 둡니다. 데이터를 바꾸려면 GitHub에서 `mart.duckdb`만 새 파일로 올리면 앱이 다시 배포됩니다.
+
+지금 `.streamlit/secrets.toml`에는 비밀 정보가 없어 함께 올려도 됩니다. BigQuery에서 직접 읽도록 바꾸면 서비스 계정 키가 필요한데, 그 키는 Streamlit Secrets 칸에만 넣고 공개 저장소에 절대 올리지 않습니다. 자세한 내용은 [데이터 연결 안내](../reference/dashboard-connection.md)에 있습니다.
 
 ## 13. 금융 데이터와 AI 윤리 토론
 
